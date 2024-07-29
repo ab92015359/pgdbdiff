@@ -22,12 +22,15 @@ public class SqlUtil {
                 insertValues += ", ";
             }
             insertKeys += "\"" + sourceColumnEntry.getKey() + "\"";
-            if (sourceColumnEntry.getValue() == null) {
+            Object value = sourceColumnEntry.getValue();
+            if (value == null) {
                 insertValues += "NULL";
-            } else if (sourceColumnEntry.getValue().equals("\\")) {
-                insertValues += "'\\" + sourceColumnEntry.getValue() + "'";
             } else {
-                insertValues += "'" + sourceColumnEntry.getValue() + "'";
+                if (value instanceof String) {
+                    value = ((String) value).replaceAll("'", "''");
+                    value = ((String) value).replaceAll("\\\\", "\\\\\\\\");
+                }
+                insertValues += "'" + value + "'";
             }
             i++;
         }
@@ -41,10 +44,17 @@ public class SqlUtil {
             if (i != 0) {
                 updateSql += ", ";
             }
-            if (diffEntry.getValue() == null) {
-                updateSql += "\"" + diffEntry.getKey() + "\" = NULL";
+
+            updateSql += "\"" + diffEntry.getKey() + "\" = ";
+            Object value = diffEntry.getValue();
+            if (value == null) {
+                updateSql += "NULL";
             } else {
-                updateSql += "\"" + diffEntry.getKey() + "\" = '" + diffEntry.getValue() + "'";
+                if (value instanceof String) {
+                    value = ((String) value).replaceAll("'", "''");
+                    value = ((String) value).replaceAll("\\\\", "\\\\\\\\");
+                }
+                updateSql += "'" + value + "'";
             }
 
             i++;
