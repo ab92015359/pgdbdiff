@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- 服务相关信息, 必须配置 -->
+    <property name="LOG_MODULE" value="pgdbdiff"/>
+
+    <!-- 输出的消息模板 -->
+    <property name="LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [${PID}] [%thread] %-40logger{36} : %msg%n"/>
+    <appender name="APPLICATION_CONSOLE_LOG" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- 仅输出至控制台 -->
+    <springProfile name="prod">
+        <root level="INFO">
+            <appender-ref ref="APPLICATION_CONSOLE_LOG"/>
+        </root>
+	    <!-- 根据配置打印com.gksk包下面的日志 -->
+	    <logger name="com.vernon" level="INFO" additivity="false">
+	    	<appender-ref ref="APPLICATION_CONSOLE_LOG"/>
+	    </logger>
+    </springProfile>
+
+    <!-- dev环境仅输出至文件 -->
+    <springProfile name="!prod">
+        <root level="INFO">
+            <appender-ref ref="APPLICATION_CONSOLE_LOG"/>
+        </root>
+        <logger name="com.vernon" level="INFO" additivity="false">
+            <appender-ref ref="APPLICATION_CONSOLE_LOG"/>
+        </logger>
+    </springProfile>
+
+</configuration>
