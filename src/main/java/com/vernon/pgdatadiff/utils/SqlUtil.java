@@ -27,8 +27,12 @@ public class SqlUtil {
                 insertValues += "NULL";
             } else {
                 if (value instanceof String) {
-                    value = ((String) value).replaceAll("'", "''");
-                    value = ((String) value).replaceAll("\\\\", "\\\\\\\\");
+                    if (value.equals("\\")) {
+                        value = "\\\\";
+                    } else {
+                        value = ((String) value).replaceAll("'", "''");
+                    }
+
                 }
                 insertValues += "'" + value + "'";
             }
@@ -51,8 +55,11 @@ public class SqlUtil {
                 updateSql += "NULL";
             } else {
                 if (value instanceof String) {
-                    value = ((String) value).replaceAll("'", "''");
-                    value = ((String) value).replaceAll("\\\\", "\\\\\\\\");
+                    if (value.equals("\\")) {
+                        value = "\\\\";
+                    } else {
+                        value = ((String) value).replaceAll("'", "''");
+                    }
                 }
                 updateSql += "'" + value + "'";
             }
