@@ -18,15 +18,15 @@ public class DataWriter implements Runnable {
     public void run() {
         EchoObject eo;
         while (true) {
-            eo = DataDiffContext.echoQueue.poll();
+            eo = DBDiffContext.echoQueue.poll();
             if (eo != null) {
                 FileUtil.echo(eo.getFilePath(), eo.getContent());
             }
 
-            if (DataDiffContext.isFinished && DataDiffContext.echoQueue.size() == 0) {
+            if (DBDiffContext.isFinished && DBDiffContext.echoQueue.size() == 0) {
                 log.info("========== Finish to process all of diff set ==========");
                 System.exit(9);
-            } else if (DataDiffContext.echoQueue.size() == 0) {
+            } else if (DBDiffContext.echoQueue.size() == 0) {
                 try {
                     Thread.sleep(10);
                 } catch (InterruptedException e) {
@@ -37,7 +37,7 @@ public class DataWriter implements Runnable {
             long endTime = System.currentTimeMillis();
             long executionTime = endTime - lastTime;
             if (executionTime > 2000) {
-                log.debug(String.format("data writer is working and queue have %s item.", DataDiffContext.echoQueue.size()));
+                log.debug(String.format("data writer is working and queue have %s item.", DBDiffContext.echoQueue.size()));
                 lastTime = endTime;
             }
         }

@@ -1,41 +1,44 @@
-[
-	{
-		"key": "gkskfbr_prod2fz",
-		"value": {
-			"source": {
-				"url": "jdbc:postgresql://1.1.1.1:5432/db1?currentSchema=schema1",
-				"username": "xxx",
-				"password": "xxx",
-				"schema": "schema1"
-			},
-			"target": {
-				"url": "jdbc:postgresql://2.2.2.2:5432/db1?currentSchema=schema2",
-				"username": "xxx",
-				"password": "xxx",
-				"schema": "schema2"
-			},
-			"compareOptions": {
-				"batchSize": 8000,
-				"concurrent": 200,
-				"dataCompare": {
-					"enable": true,
-					"tables": [
-						{
-							"tableName": "t1",
-							"tableKeyFields": [
-								"propertysid",
-								"syscode"
-							]
-						},
-						{
-							"tableName": "t2",
-							"tableKeyFields": [
-								"id"
-							]
-						}
-					]
+{
+	"misc": {
+		"pgDumpPath": "D:\\Program Files (x86)\\pgadmin-v7\\runtime\\pg_dump.exe",
+		"enableSchemaDiff": true,
+		"enableDataDiff": true
+	},
+	"compares": [
+		{
+			"key": "gkskfbr_gs_prod2fz",
+			"value": {
+				"source": {
+					"host": "",
+					"port": "",
+					"dbName": "",
+					"schema": "",
+					"username": "",
+					"password": ""
+				},
+				"target": {
+					"host": "",
+					"port": "",
+					"dbName": "",
+					"schema": "",
+					"username": "",
+					"password": ""
+				},
+				"compareOptions": {
+					"batchSize": 8000,
+					"concurrent": 200,
+					"dataCompare": {
+						"tables": [
+							{
+								"tableName": "base_code",
+								"tableKeyFields": [
+									"codeid"
+								]
+							}
+						]
+					}
 				}
 			}
 		}
-	}
-]
+	]
+}

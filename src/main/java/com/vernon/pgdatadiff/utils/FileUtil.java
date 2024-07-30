@@ -39,7 +39,7 @@ public class FileUtil {
         File directory = new File(directoryPath);
 
         if (!directory.exists()) {
-            if (!directory.mkdir()) {
+            if (!directory.mkdirs()) {
                 log.error("cannot create dir: " + directoryPath);
                 throw new RuntimeException("cannot create dir: " + directoryPath);
             }

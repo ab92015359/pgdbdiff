@@ -13,4 +13,5 @@ public class CompareTable {
     private String tableName;
     private List<String> tableKeyFields;
     private Integer batchSize;
+    private Integer concurrent;
 }

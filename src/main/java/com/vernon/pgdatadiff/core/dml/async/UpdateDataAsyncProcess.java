@@ -1,4 +1,4 @@
-package com.vernon.pgdatadiff.core.async;
+package com.vernon.pgdatadiff.core.dml.async;
 
 import java.util.List;
 import java.util.Map;
@@ -13,7 +13,7 @@ import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.vernon.pgdatadiff.constants.SqlConstant;
-import com.vernon.pgdatadiff.core.DataDiffContext;
+import com.vernon.pgdatadiff.core.DBDiffContext;
 import com.vernon.pgdatadiff.dao.DataOperationDao;
 import com.vernon.pgdatadiff.enums.DsEnum;
 import com.vernon.pgdatadiff.model.CompareTable;
@@ -49,7 +49,7 @@ public class UpdateDataAsyncProcess extends RecursiveTask<Integer> {
         this.ct = ct;
         this.dataMap = dataMap;
 
-        this.filePath = FileUtil.createFile(DataDiffContext.identifier, configKey + ".sql");
+        this.filePath = FileUtil.createFile(DBDiffContext.identifier + System.getProperty("file.separator") + configKey, "DataDiff.sql");
     }
 
     @Override
@@ -114,22 +114,22 @@ public class UpdateDataAsyncProcess extends RecursiveTask<Integer> {
                 }
 
                 if (!ObjectUtils.isEmpty(diffColumn)) {
-                    DataDiffContext.echoQueue.offer(EchoObject.builder().filePath(this.filePath)
+                    DBDiffContext.echoQueue.offer(EchoObject.builder().filePath(this.filePath)
                             .content(String.format(SqlConstant.UPDATE_SQL, dataDiffConfigItem.getValue().getTarget().getSchema(), ct.getTableName(),
                                     SqlUtil.buildUpdate(ct, diffColumn), SqlUtil.buildWhere(ct, segDataMap.get(id))))
                             .build());
                 }
             }
 
-            DataDiffContext.finishedForkTaskCount++;
+            DBDiffContext.finishedForkTaskCount++;
             log.info(String.format("finish to process table %s, count %s, progress(%s/%s).", ct.getTableName(), segPartition.size(),
-                    DataDiffContext.finishedForkTaskCount, DataDiffContext.forkTaskCount));
+                    DBDiffContext.finishedForkTaskCount, DBDiffContext.forkTaskCount));
             return segPartition.size();
         }
 
         List<List<String>> segPartitions = Lists.partition(segPartition, segPartition.size() / 2 + 1);
 
-        DataDiffContext.forkTaskCount++;
+        DBDiffContext.forkTaskCount++;
         log.debug(String.format("split table %s count %s to %s and %s", ct.getTableName(), segPartition.size(), segPartitions.get(0).size(),
                 segPartitions.get(1).size()));
         UpdateDataAsyncProcess task1 = new UpdateDataAsyncProcess(segPartitions.get(0), configKey, dataDiffConfigItem, ct, dataMap);

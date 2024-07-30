@@ -1,4 +1,4 @@
-package com.vernon.pgdatadiff.core;
+package com.vernon.pgdatadiff.core.dml;
 
 import java.util.Map;
 import java.util.Map.Entry;
@@ -8,12 +8,14 @@ import java.util.concurrent.ForkJoinTask;
 
 import org.springframework.util.ObjectUtils;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.vernon.pgdatadiff.constants.SettingConstant;
 import com.vernon.pgdatadiff.constants.SqlConstant;
-import com.vernon.pgdatadiff.core.async.InsertDataAsyncProcess;
-import com.vernon.pgdatadiff.core.async.UpdateDataAsyncProcess;
+import com.vernon.pgdatadiff.core.DBDiffContext;
+import com.vernon.pgdatadiff.core.dml.async.InsertDataAsyncProcess;
+import com.vernon.pgdatadiff.core.dml.async.UpdateDataAsyncProcess;
 import com.vernon.pgdatadiff.dao.DataOperationDao;
 import com.vernon.pgdatadiff.enums.DsEnum;
 import com.vernon.pgdatadiff.model.CompareTable;
@@ -33,10 +35,10 @@ public class DataComparer {
 
     public static void compareData() {
         int totolRowCount = 0;
-        int totalConfigCount = DataDiffContext.configMap.size();
+        int totalConfigCount = DBDiffContext.configMap.size();
         int processedConfigCount = 0;
-        for (Entry<String, DataDiffConfigItem> entry : DataDiffContext.configMap.entrySet()) {
-            if (!DataDiffContext.execCommands.contains(entry.getKey().toUpperCase()) && !DataDiffContext.execCommands.contains(SettingConstant.ALL_COMMAND)) {
+        for (Entry<String, DataDiffConfigItem> entry : DBDiffContext.configMap.entrySet()) {
+            if (!DBDiffContext.execCommands.contains(entry.getKey().toUpperCase()) && !DBDiffContext.execCommands.contains(SettingConstant.ALL_COMMAND)) {
                 continue;
             }
             log.info(String.format("========== Start to process diff set for %s with progress(%s/%s) ==========", entry.getKey(), processedConfigCount + 1,
@@ -75,7 +77,7 @@ public class DataComparer {
         }
 
         log.info("finish to generate sql with totle count " + totolRowCount);
-        DataDiffContext.isFinished = true;
+        DBDiffContext.isFinished = true;
     }
 
     private static void generateSql(String configKey, DataDiffConfigItem dataDiffConfigItem, CompareTable ct, Map<String, Map<String, Object>> onlySourceMap,
@@ -114,9 +116,9 @@ public class DataComparer {
 
     private static void generateInsertSql(String configKey, DataDiffConfigItem dataDiffConfigItem, CompareTable ct,
             Map<String, Map<String, Object>> onlySourceMap) {
-        DataDiffContext.initForkCount();
-
-        ForkJoinPool pool = new ForkJoinPool(dataDiffConfigItem.getValue().getCompareOptions().getConcurrent());
+        DBDiffContext.initForkCount();
+        Integer poolSize = Optional.fromNullable(ct.getConcurrent()).or(dataDiffConfigItem.getValue().getCompareOptions().getConcurrent());
+        ForkJoinPool pool = new ForkJoinPool(poolSize);
         ForkJoinTask<Integer> task = new InsertDataAsyncProcess(Lists.newArrayList(onlySourceMap.keySet()), configKey, dataDiffConfigItem, ct, onlySourceMap);
         pool.submit(task);
 
@@ -169,9 +171,9 @@ public class DataComparer {
 //    }
 
     private static void generateUpdateSql(String configKey, DataDiffConfigItem dataDiffConfigItem, CompareTable ct, Map<String, Map<String, Object>> bothMap) {
-        DataDiffContext.initForkCount();
-
-        ForkJoinPool pool = new ForkJoinPool(dataDiffConfigItem.getValue().getCompareOptions().getConcurrent());
+        DBDiffContext.initForkCount();
+        Integer poolSize = Optional.fromNullable(ct.getConcurrent()).or(dataDiffConfigItem.getValue().getCompareOptions().getConcurrent());
+        ForkJoinPool pool = new ForkJoinPool(poolSize);
         ForkJoinTask<Integer> task = new UpdateDataAsyncProcess(Lists.newArrayList(bothMap.keySet()), configKey, dataDiffConfigItem, ct, bothMap);
         pool.submit(task);
 
@@ -187,9 +189,9 @@ public class DataComparer {
 
     private static void generateDeleteSql(String configKey, DataDiffConfigItem dataDiffConfigItem, CompareTable ct,
             Map<String, Map<String, Object>> onlyTargetSet) {
-        String filePath = FileUtil.createFile(DataDiffContext.identifier, configKey + ".sql");
+        String filePath = FileUtil.createFile(DBDiffContext.identifier + System.getProperty("file.separator") + configKey, "DataDiff.sql");
         for (Entry<String, Map<String, Object>> entry : onlyTargetSet.entrySet()) {
-            DataDiffContext.echoQueue.offer(EchoObject.builder().filePath(filePath).content(String.format(SqlConstant.DELETE_SQL,
+            DBDiffContext.echoQueue.offer(EchoObject.builder().filePath(filePath).content(String.format(SqlConstant.DELETE_SQL,
                     dataDiffConfigItem.getValue().getTarget().getSchema(), ct.getTableName(), SqlUtil.buildWhere(ct, entry.getValue()))).build());
         }
     }

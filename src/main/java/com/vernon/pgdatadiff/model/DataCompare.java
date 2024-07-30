@@ -10,6 +10,5 @@ import lombok.Data;
 */
 @Data
 public class DataCompare {
-    private Boolean enable;
     private List<CompareTable> tables;
 }

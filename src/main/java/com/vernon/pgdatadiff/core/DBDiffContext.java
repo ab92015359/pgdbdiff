@@ -11,6 +11,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.vernon.pgdatadiff.constants.SettingConstant;
 import com.vernon.pgdatadiff.model.DataDiffConfigItem;
+import com.vernon.pgdatadiff.model.DataDiffMiscSetting;
 import com.vernon.pgdatadiff.model.EchoObject;
 
 import lombok.Data;
@@ -20,8 +21,10 @@ import lombok.Data;
  * @time 2024年7月25日 下午10:52:49
  */
 @Data
-public class DataDiffContext {
+public class DBDiffContext {
+    public static DataDiffMiscSetting miscSetting;
     public static Map<String, DataDiffConfigItem> configMap = Maps.newHashMap();
+    
     public static String currentWorkDir;
     public static String identifier;
     public static Deque<EchoObject> echoQueue = new ArrayDeque<>();

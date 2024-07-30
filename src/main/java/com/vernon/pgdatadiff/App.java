@@ -7,8 +7,8 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.google.common.collect.Lists;
-import com.vernon.pgdatadiff.core.DataDiff;
-import com.vernon.pgdatadiff.core.DataDiffContext;
+import com.vernon.pgdatadiff.core.DBDiff;
+import com.vernon.pgdatadiff.core.DBDiffContext;
 
 /**
  * @author liuyu
@@ -25,20 +25,25 @@ public class App {
             if (arg.contains("-f")) {
                 String[] argArray = arg.split("=");
                 if (argArray.length == 2) {
-                    DataDiffContext.filePath = argArray[1];
+                    DBDiffContext.filePath = argArray[1];
                 }
             } else if (arg.contains("-c")) {
                 String[] argArray = arg.split("=");
                 if (argArray.length == 2) {
-                    DataDiffContext.execCommands = Lists.newArrayList(argArray[1].toUpperCase().split(","));
+                    DBDiffContext.execCommands = Lists.newArrayList(argArray[1].toUpperCase().split(","));
                 }
             }
         }
 
-        DataDiff dataDiff = new DataDiff();
-        dataDiff.loadConf();
-        dataDiff.startDataWriter();
-        dataDiff.compareData();
+        DBDiff dbDiff = new DBDiff();
+        dbDiff.loadConf();
+        dbDiff.startDataWriter();
+        if (DBDiffContext.miscSetting.getEnableSchemaDiff()) {
+            dbDiff.compareSchema();
+        }
+        if (DBDiffContext.miscSetting.getEnableDataDiff()) {
+            dbDiff.compareData();
+        }
     }
 
 }
