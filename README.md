@@ -6,9 +6,9 @@
 
 
 ## How this library works
-  1. You can download "pgdbdiff-0.0.1-SNAPSHOT.jar", "apgdiff-2.7.0.jar" and "datadiffconfig.json" to your local from ./lib directory.
-  2. Before running it, you should ensure that the machine has installed the "pg_dump.exe", you can downlond it from https://www.postgresql.org/download/
-  3. Edit the "datadiffconfig.json" file.
+- You can download "pgdbdiff-0.0.1-SNAPSHOT.jar", "apgdiff-2.7.0.jar" and "datadiffconfig.json" to your local from ./lib directory.
+- Before running it, you should ensure that the machine has installed the "pg_dump.exe", you can downlond it from https://www.postgresql.org/download/
+- Edit the "datadiffconfig.json" file.
   
 
 ## How to Run It
