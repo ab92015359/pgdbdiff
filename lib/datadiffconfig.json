@@ -1,0 +1,44 @@
+{
+	"misc": {
+		"pgDumpPath": "D:\\Program Files (x86)\\pgadmin-v7\\runtime\\pg_dump.exe",
+		"enableSchemaDiff": true,
+		"enableDataDiff": true
+	},
+	"compares": [
+		{
+			"key": "gkskfbr_gs_prod2fz",
+			"value": {
+				"source": {
+					"host": "",
+					"port": "",
+					"dbName": "",
+					"schema": "",
+					"username": "",
+					"password": ""
+				},
+				"target": {
+					"host": "",
+					"port": "",
+					"dbName": "",
+					"schema": "",
+					"username": "",
+					"password": ""
+				},
+				"compareOptions": {
+					"batchSize": 8000,
+					"concurrent": 200,
+					"dataCompare": {
+						"tables": [
+							{
+								"tableName": "base_code",
+								"tableKeyFields": [
+									"codeid"
+								]
+							}
+						]
+					}
+				}
+			}
+		}
+	]
+}
