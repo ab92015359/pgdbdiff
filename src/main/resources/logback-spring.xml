@@ -18,7 +18,7 @@
         <root level="INFO">
             <appender-ref ref="APPLICATION_CONSOLE_LOG"/>
         </root>
-	    <!-- 根据配置打印com.gksk包下面的日志 -->
+	    <!-- 根据配置打印包下面的日志 -->
 	    <logger name="com.vernon" level="INFO" additivity="false">
 	    	<appender-ref ref="APPLICATION_CONSOLE_LOG"/>
 	    </logger>

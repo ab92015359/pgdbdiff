@@ -38,7 +38,7 @@ Create a config file in your project folder like the below example:
 	},
 	"compares": [
 		{
-			"key": "gkskfbr_gs_prod2fz",   // Compare item's unique value, can include multiple compare items
+			"key": "k1",   // Compare item's unique value, can include multiple compare items
 			"value": {
 				"source": {
 					"host": "",                // Postgres db host
