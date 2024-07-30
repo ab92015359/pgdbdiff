@@ -22,7 +22,10 @@ java -jar pgdbdiff-0.0.1-SNAPSHOT.jar
 java -jar pgdbdiff-0.0.1-SNAPSHOT.jar -f=<configFile>
 ~~~
 
-  - Run using the specified configuration file, and compare specified config item. if all, the "-c=ALL"; if K1, the "-c=K1"; if K1, k2 and K3, the "-c=K1,K2,K3"
+  - Run using the specified configuration file, and compare specified config item.
+  	- if all, the param is "-c=ALL";
+  	- if K1, the param is "-c=K1";
+   	- if K1, k2 and K3, the param is "-c=K1,K2,K3"
 ~~~
 java -jar pgdbdiff-0.0.1-SNAPSHOT.jar -f=<configFile> -c=<ALL|CompareKey>
 ~~~
