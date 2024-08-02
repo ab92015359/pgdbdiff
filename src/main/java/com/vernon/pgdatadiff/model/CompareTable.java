@@ -12,6 +12,7 @@ import lombok.Data;
 public class CompareTable {
     private String tableName;
     private List<String> tableKeyFields;
+    private List<String> excluededUpdateFields;
     private Integer batchSize;
     private Integer concurrent;
 }

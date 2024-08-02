@@ -9,6 +9,7 @@ import lombok.Data;
 @Data
 public class CompareOptions {
     private DataCompare dataCompare;
+    private SchemaCompare schemaCompare;
     private Integer batchSize = 1000;
     private Integer concurrent = 5;
 }

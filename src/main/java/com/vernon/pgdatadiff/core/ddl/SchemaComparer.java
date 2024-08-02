@@ -25,6 +25,7 @@ public class SchemaComparer {
         int processedConfigCount = 0;
 
         String sourceDDLFilePath = "";
+        String sourceDDLTempFilePath = "";
         String targetDDLFilePath = "";
         for (Entry<String, DataDiffConfigItem> entry : DBDiffContext.configMap.entrySet()) {
             if (!DBDiffContext.execCommands.contains(entry.getKey().toUpperCase()) && !DBDiffContext.execCommands.contains(SettingConstant.ALL_COMMAND)) {
@@ -35,12 +36,18 @@ public class SchemaComparer {
 
             String dir = DBDiffContext.identifier + System.getProperty("file.separator") + entry.getKey() + System.getProperty("file.separator") + "dump";
             String sourceDDLFileName = "sourceDDL.sql";
+            String sourceDDLTempFileName = "sourceDDLTemp.sql";
             sourceDDLFilePath = FileUtil.createFile(dir, sourceDDLFileName);
-            PGUtil.dump(sourceDDLFilePath, entry.getValue().getValue().getSource());
+            sourceDDLTempFilePath = FileUtil.createFile(dir, sourceDDLTempFileName);
+            PGUtil.dump(sourceDDLTempFilePath, entry.getValue().getValue().getSource(),
+                    entry.getValue().getValue().getCompareOptions().getSchemaCompare().getExcluedTables());
+            FileUtil.replaceFile(sourceDDLTempFilePath, sourceDDLFilePath, entry.getValue().getValue().getSource().getSchema(),
+                    entry.getValue().getValue().getTarget().getSchema());
 
             String targetDDLFileName = "targetDDL.sql";
             targetDDLFilePath = FileUtil.createFile(dir, targetDDLFileName);
-            PGUtil.dump(targetDDLFilePath, entry.getValue().getValue().getTarget());
+            PGUtil.dump(targetDDLFilePath, entry.getValue().getValue().getTarget(),
+                    entry.getValue().getValue().getCompareOptions().getSchemaCompare().getExcluedTables());
 
             PGUtil.compare(sourceDDLFilePath, targetDDLFilePath, DBDiffContext.identifier + System.getProperty("file.separator") + entry.getKey(),
                     "SchemaDiff.sql");

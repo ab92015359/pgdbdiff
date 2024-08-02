@@ -98,6 +98,10 @@ public class UpdateDataAsyncProcess extends RecursiveTask<Integer> {
                 Map<String, Object> diffColumn = Maps.newHashMap();
                 for (Entry<String, Object> sourceColumnEntry : sourceRowColumns.entrySet()) {
                     String columnKey = sourceColumnEntry.getKey();
+                    if (ct.getExcluededUpdateFields() != null && ct.getExcluededUpdateFields().contains(columnKey)) {
+                        continue;
+                    }
+
                     Object sourceValue = sourceColumnEntry.getValue();
                     Object targetValue = targetRowColumns.get(columnKey);
                     if (sourceValue == null && targetValue == null) {

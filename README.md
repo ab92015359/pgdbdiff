@@ -62,8 +62,13 @@ Create a config file in your project folder like the below example:
 				"compareOptions": {
 					"batchSize": 8000,        // The max number of data loaded from the database each time
 					"concurrent": 200,        // Pool size for concurrent query threads
+					"schemaCompare": {
+						"excluedTables": [
+							""
+						]
+					},
 					"dataCompare": {
-						"tables": [             // The table array to compare
+						"includedTables": [             // The table array to compare
 							{
 								"tableName": "base_code",    // The name of the table without schema
 								"tableKeyFields": [          // The comma-separated list of fields name that can be used to identify rows uniquely

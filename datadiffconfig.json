@@ -2,11 +2,11 @@
 	"misc": {
 		"pgDumpPath": "D:\\Program Files (x86)\\pgadmin-v7\\runtime\\pg_dump.exe",
 		"enableSchemaDiff": true,
-		"enableDataDiff": true
+		"enableDataDiff": false
 	},
 	"compares": [
 		{
-			"key": "k1",
+			"key": "K1",
 			"value": {
 				"source": {
 					"host": "",
@@ -27,12 +27,26 @@
 				"compareOptions": {
 					"batchSize": 8000,
 					"concurrent": 200,
+					"schemaCompare": {
+						"excluedTables": [
+							""
+						]
+					},
 					"dataCompare": {
-						"tables": [
+						"includedTables": [
 							{
-								"tableName": "base_code",
+								"tableName": "",
 								"tableKeyFields": [
-									"codeid"
+									""
+								],
+								"excluededUpdateFields": [
+									""
+								]
+							},
+							{
+								"tableName": "",
+								"tableKeyFields": [
+									""
 								]
 							}
 						]

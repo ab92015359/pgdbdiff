@@ -3,15 +3,22 @@ package com.vernon.pgdatadiff.utils;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.Map;
 
+import org.springframework.util.ObjectUtils;
+
+import com.google.common.collect.Lists;
 import com.vernon.pgdatadiff.core.DBDiffContext;
 import com.vernon.pgdatadiff.model.DBSetting;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Vernon Chen
  * @time 2024年7月30日 上午11:28:33
  */
+@Slf4j
 public class PGUtil {
 
     public static void compare(String srouceFile, String targetFile, String outputDir, String outputFile) {
@@ -39,7 +46,11 @@ public class PGUtil {
         }
     }
 
-    public static void dump(String dumpFilePath, DBSetting dbSetting) {
+    public static List<String> builcCommand(String... command) {
+        return Lists.newArrayList(command);
+    }
+
+    public static void dump(String dumpFilePath, DBSetting dbSetting, List<String> excludedTables) {
         String pgDumpExe = DBDiffContext.miscSetting.getPgDumpPath();
 
         Process p;
@@ -52,7 +63,7 @@ public class PGUtil {
         String username = dbSetting.getUsername();
         String password = dbSetting.getPassword();
 
-        pb = new ProcessBuilder(pgDumpExe, // pg_dump路径
+        List<String> commands = PGUtil.builcCommand(pgDumpExe, // pg_dump路径
                 "--host", host, // pghost
                 "--port", port, // pgport
                 "--username", username, // pg用户名
@@ -61,6 +72,20 @@ public class PGUtil {
                 "--dbname", dbName, // database名称
                 "--schema", schemaName // 可以指定导出带有中文的schema
         );
+
+//        "--exclude-table", "tax_classification_code_20240801bak",
+//        "--exclude-table", "gksk_fbr_gs.license_share_config",
+//        "--exclude-table", "gksk_fbr_gs.tasks_info"
+
+        if (!ObjectUtils.isEmpty(excludedTables)) {
+            for (String excludedTable : excludedTables) {
+                commands.add("--exclude-table");
+                commands.add(dbSetting.getSchema() + "." + excludedTable);
+            }
+        }
+
+        log.info("Dump DB: " + commands.toString());
+        pb = new ProcessBuilder(commands);
 
         try {
             final Map<String, String> env = pb.environment();

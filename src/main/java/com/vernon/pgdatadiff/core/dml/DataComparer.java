@@ -43,9 +43,9 @@ public class DataComparer {
             }
             log.info(String.format("========== Start to process diff set for %s with progress(%s/%s) ==========", entry.getKey(), processedConfigCount + 1,
                     totalConfigCount));
-            int totalTableCount = entry.getValue().getValue().getCompareOptions().getDataCompare().getTables().size();
+            int totalTableCount = entry.getValue().getValue().getCompareOptions().getDataCompare().getIncludedTables().size();
             int processedTableCount = 0;
-            for (CompareTable ct : entry.getValue().getValue().getCompareOptions().getDataCompare().getTables()) {
+            for (CompareTable ct : entry.getValue().getValue().getCompareOptions().getDataCompare().getIncludedTables()) {
                 log.info(String.format("========== Start to compare %s's table %s with progress(%s/%s) ==========", entry.getKey(), ct.getTableName(),
                         processedTableCount + 1, totalTableCount));
                 String sourceSchema = entry.getValue().getValue().getSource().getSchema();
@@ -77,7 +77,6 @@ public class DataComparer {
         }
 
         log.info("finish to generate sql with totle count " + totolRowCount);
-        DBDiffContext.isFinished = true;
     }
 
     private static void generateSql(String configKey, DataDiffConfigItem dataDiffConfigItem, CompareTable ct, Map<String, Map<String, Object>> onlySourceMap,

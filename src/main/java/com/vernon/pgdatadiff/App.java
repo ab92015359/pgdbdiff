@@ -44,6 +44,7 @@ public class App {
         if (DBDiffContext.miscSetting.getEnableDataDiff()) {
             dbDiff.compareData();
         }
+        DBDiffContext.isFinished = true;
     }
 
 }
