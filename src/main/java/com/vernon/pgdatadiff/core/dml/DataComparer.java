@@ -81,6 +81,12 @@ public class DataComparer {
 
     private static void generateSql(String configKey, DataDiffConfigItem dataDiffConfigItem, CompareTable ct, Map<String, Map<String, Object>> onlySourceMap,
             Map<String, Map<String, Object>> bothMap, Map<String, Map<String, Object>> onlyTargetSet) {
+        log.debug(String.format("start to generate delete sql for talbe %s, count %s.", ct.getTableName(), onlyTargetSet.size()));
+        if (!ObjectUtils.isEmpty(onlyTargetSet)) {
+            generateDeleteSql(configKey, dataDiffConfigItem, ct, onlyTargetSet);
+        }
+        log.debug("finish to generate delete sql.");
+
         log.debug(String.format("start to generate insert sql for talbe %s, count %s.", ct.getTableName(), onlySourceMap.size()));
         if (!ObjectUtils.isEmpty(onlySourceMap)) {
             generateInsertSql(configKey, dataDiffConfigItem, ct, onlySourceMap);
@@ -92,12 +98,6 @@ public class DataComparer {
             generateUpdateSql(configKey, dataDiffConfigItem, ct, bothMap);
         }
         log.debug("finish to generate update sql.");
-
-        log.debug(String.format("start to generate delete sql for talbe %s, count %s.", ct.getTableName(), onlyTargetSet.size()));
-        if (!ObjectUtils.isEmpty(onlyTargetSet)) {
-            generateDeleteSql(configKey, dataDiffConfigItem, ct, onlyTargetSet);
-        }
-        log.debug("finish to generate delete sql.");
     }
 
 //    private static void generateInsertSqlSync(String configKey, DataDiffConfigItem dataDiffConfigItem, CompareTable ct,
