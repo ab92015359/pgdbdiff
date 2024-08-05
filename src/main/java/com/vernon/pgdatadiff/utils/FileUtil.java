@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class FileUtil {
     public static void replaceFile(String filePath1, String filePath2, String str1, String str2) {
         File file = new File(filePath1);
-        try (FileInputStream fis = new FileInputStream(file); InputStreamReader isr = new InputStreamReader(fis); BufferedReader br = new BufferedReader(isr)) {
+        try (FileInputStream fis = new FileInputStream(file); InputStreamReader isr = new InputStreamReader(fis, "UTF-8"); BufferedReader br = new BufferedReader(isr)) {
 
             String line;
             while ((line = br.readLine()) != null) {
@@ -36,7 +36,7 @@ public class FileUtil {
     public static String readFile(String filePath) {
         String content = Strings.EMPTY;
         File file = new File(filePath);
-        try (FileInputStream fis = new FileInputStream(file); InputStreamReader isr = new InputStreamReader(fis); BufferedReader br = new BufferedReader(isr)) {
+        try (FileInputStream fis = new FileInputStream(file); InputStreamReader isr = new InputStreamReader(fis, "UTF-8"); BufferedReader br = new BufferedReader(isr)) {
 
             String line;
             while ((line = br.readLine()) != null) {
@@ -74,7 +74,7 @@ public class FileUtil {
 
     public static void echo(String filePath, String line) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-            writer.write(line);
+            writer.write(new String(line.getBytes("UTF-8"), "UTF-8"));
             writer.newLine(); // 写入一个新行字符
         } catch (IOException e) {
             e.printStackTrace();
