@@ -1,19 +1,17 @@
 package com.vernon.pgdatadiff.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.Map;
-
-import org.apache.commons.lang3.StringUtils;
-
 import com.google.common.collect.Maps;
 import com.vernon.pgdatadiff.enums.DsEnum;
 import com.vernon.pgdatadiff.model.CompareTable;
 import com.vernon.pgdatadiff.pg.PostgresConnectionPool;
 import com.vernon.pgdatadiff.utils.SqlUtil;
-
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Map;
 
 /**
  * @author Vernon Chen
@@ -45,7 +43,7 @@ public class DataOperationDao {
             while (resultSet.next()) {
 //              如果要处理所有列，可以遍历所有的列
                 Map<String, Object> resultMap = Maps.newLinkedHashMap();
-                Map<String, Object> idMap = Maps.newLinkedHashMap();
+                Map<String, Object> idMap = Maps.newHashMap();
                 int columnCount = resultSet.getMetaData().getColumnCount();
                 for (int i = 1; i <= columnCount; i++) {
                     String columnKey = resultSet.getMetaData().getColumnName(i);
