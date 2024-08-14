@@ -45,7 +45,7 @@ public class DataOperationDao {
             while (resultSet.next()) {
 //              如果要处理所有列，可以遍历所有的列
                 Map<String, Object> resultMap = Maps.newLinkedHashMap();
-                Map<String, Object> idMap = Maps.newLinkedHashMap();
+                Map<String, Object> idMap = Maps.newHashMap();
                 int columnCount = resultSet.getMetaData().getColumnCount();
                 for (int i = 1; i <= columnCount; i++) {
                     String columnKey = resultSet.getMetaData().getColumnName(i);
