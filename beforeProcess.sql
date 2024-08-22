@@ -1,0 +1,21 @@
+ALTER TABLE "%s"."clean_syscode" DISABLE TRIGGER t_updatecleansyscodecol;&
+ALTER TABLE "%s"."mod_right_usergroup_category" DISABLE TRIGGER t_delete_rusergroupcategory_module;&
+ALTER TABLE "%s"."mdm_syscode2" DISABLE TRIGGER t_deletetsyscodecol;&
+ALTER TABLE "%s"."base_menubase" DISABLE TRIGGER trg_insert_menu;&
+ALTER TABLE "%s"."mod_right_usergroup_category" DISABLE TRIGGER t_insert_rusergroupcategory_module;&
+ALTER TABLE "%s"."clean_syscode" DISABLE TRIGGER t_insertcleansyscode;&
+ALTER TABLE "%s"."module_syscode" DISABLE TRIGGER trg_module_syscode_delete;&
+ALTER TABLE "%s"."mdm_right_usergroup_category2" DISABLE TRIGGER t_delete_rusergroupcategory;&
+ALTER TABLE "%s"."base_menubase" DISABLE TRIGGER trg_delete_menu;&
+ALTER TABLE "%s"."metadata_health_rule" DISABLE TRIGGER t_deletersqlverify;&
+ALTER TABLE "%s"."metadata_rule_sqlverifybg" DISABLE TRIGGER t_deleteuniqueveriftbg;&
+ALTER TABLE "%s"."mdm_propertysauth_usergroup2" DISABLE TRIGGER t_insert_propertysauthug;&
+ALTER TABLE "%s"."mdm_right_usergroup_category2" DISABLE TRIGGER t_insert_rusergroupcategory;&
+ALTER TABLE "%s"."base_menubase" DISABLE TRIGGER update_base_menu;&
+ALTER TABLE "%s"."module_syscode" DISABLE TRIGGER t_updatesyscodecol;&
+ALTER TABLE "%s"."mdm_propertysauth_usergroup2" DISABLE TRIGGER t_delete_propertysauthug;&
+ALTER TABLE "%s"."module_syscode" DISABLE TRIGGER t_insertsyscodecol;&
+ALTER TABLE "%s"."business_scope_config" DISABLE TRIGGER before_insert_trigger;&
+ALTER TABLE "%s"."metadata_health_rule_bg" DISABLE TRIGGER t_deletesqlverifybg;&
+ALTER TABLE "%s"."metadata_health_rule_sqlverify" DISABLE TRIGGER t_deleteuniqueverift;&
+ALTER TABLE "%s"."esbx_service_tablecolumn" DROP CONSTRAINT IF EXISTS fk_esbx_service_tablecolumn_tableid;&

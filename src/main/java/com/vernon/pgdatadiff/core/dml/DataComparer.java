@@ -21,6 +21,7 @@ import org.springframework.util.ObjectUtils;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
@@ -31,32 +32,6 @@ import java.util.concurrent.ForkJoinTask;
  */
 @Slf4j
 public class DataComparer {
-
-    private static final Map<String, String> TRIGGER_NAME_MAP = new HashMap<>();
-
-    static {
-        TRIGGER_NAME_MAP.put("before_insert_trigger", "business_scope_config");
-        TRIGGER_NAME_MAP.put("t_delete_propertysauthug", "mdm_propertysauth_usergroup2");
-        TRIGGER_NAME_MAP.put("t_delete_rusergroupcategory", "mdm_right_usergroup_category2");
-        TRIGGER_NAME_MAP.put("t_delete_rusergroupcategory_module", "mod_right_usergroup_category");
-        TRIGGER_NAME_MAP.put("t_deletersqlverify", "metadata_health_rule");
-        TRIGGER_NAME_MAP.put("t_deletesqlverifybg", "metadata_health_rule_bg");
-        TRIGGER_NAME_MAP.put("t_deletetsyscodecol", "mdm_syscode2");
-        TRIGGER_NAME_MAP.put("t_deleteuniqueverift", "metadata_health_rule_sqlverify");
-        TRIGGER_NAME_MAP.put("t_deleteuniqueveriftbg", "metadata_rule_sqlverifybg");
-        TRIGGER_NAME_MAP.put("t_insert_propertysauthug", "mdm_propertysauth_usergroup2");
-        TRIGGER_NAME_MAP.put("t_insert_rusergroupcategory", "mdm_right_usergroup_category2");
-        TRIGGER_NAME_MAP.put("t_insert_rusergroupcategory_module", "mod_right_usergroup_category");
-        TRIGGER_NAME_MAP.put("t_insertcleansyscode", "clean_syscode");
-        TRIGGER_NAME_MAP.put("t_insertsyscodecol", "module_syscode");
-        TRIGGER_NAME_MAP.put("t_updatecleansyscodecol", "clean_syscode");
-        TRIGGER_NAME_MAP.put("t_updatesyscodecol", "module_syscode");
-        TRIGGER_NAME_MAP.put("trg_delete_menu", "base_menubase");
-        TRIGGER_NAME_MAP.put("trg_insert_menu", "base_menubase");
-        TRIGGER_NAME_MAP.put("trg_module_syscode_delete", "module_syscode");
-        TRIGGER_NAME_MAP.put("update_base_menu", "base_menubase");
-    }
-
 
     public static void compareData() {
         int totolRowCount = 0;
@@ -227,15 +202,8 @@ public class DataComparer {
         String configKey = entry.getKey();
         String filePath = FileUtil.createFile(DBDiffContext.identifier + System.getProperty("file.separator") + configKey, "DataDiff.sql");
 
-        // 禁用触发器
-        StringBuilder content = new StringBuilder();
-        TRIGGER_NAME_MAP.forEach((key, value) -> {
-            content.append("ALTER TABLE " + "\"").append(schema).append("\"").append(".").append("\"").append(value).append("\"").append(" DISABLE TRIGGER ").append(key).append(";\n");
-        });
-        //删除esbx_service_tablecolumn 外键
-        content.append("ALTER TABLE " + "\"").append(schema).append("\"").append(".").append("\"").append("esbx_service_tablecolumn").append("\"").append(" DROP CONSTRAINT IF EXISTS fk_esbx_service_tablecolumn_tableid").append(";\n");
-
-        DBDiffContext.echoQueue.offer(EchoObject.builder().filePath(filePath).content(content.toString()).build());
+        String beforeProcessSql = FileUtil.readFile("beforeProcess.sql");
+        buildProcessSql(schema, filePath, beforeProcessSql);
     }
 
     private static void generateAfterProcess(Entry<String, DataDiffConfigItem> entry) {
@@ -243,14 +211,18 @@ public class DataComparer {
         String configKey = entry.getKey();
         String filePath = FileUtil.createFile(DBDiffContext.identifier + System.getProperty("file.separator") + configKey, "DataDiff.sql");
 
-        // 启用触发器
-        StringBuilder content = new StringBuilder();
-        content.append("\n");
-        TRIGGER_NAME_MAP.forEach((key, value) -> {
-            content.append("ALTER TABLE " + "\"").append(schema).append("\"").append(".").append("\"").append(value).append("\"").append(" ENABLE TRIGGER ").append(key).append(";\n");
-        });
-        //新增esbx_service_tablecolumn 外键
-        content.append("ALTER TABLE " + "\"").append(schema).append("\"").append(".").append("\"").append("esbx_service_tablecolumn").append("\"").append(" ADD CONSTRAINT fk_esbx_service_tablecolumn_tableid FOREIGN KEY (tableid) REFERENCES " + "\"").append(schema).append("\"").append(".").append("esbx_service_table(id)").append(";\n");
-        DBDiffContext.echoQueue.offer(EchoObject.builder().filePath(filePath).content(content.toString()).build());
+        String afterProcessSql = FileUtil.readFile("afterProcess.sql");
+        buildProcessSql(schema, filePath, afterProcessSql);
+    }
+
+    private static void buildProcessSql(String schema, String filePath, String afterProcessSql) {
+        if (Objects.nonNull(afterProcessSql)) {
+            String[] split = afterProcessSql.split("&");
+            StringBuilder content = new StringBuilder();
+            for (String sql : split) {
+                content.append(String.format(sql, schema));
+            }
+            DBDiffContext.echoQueue.offer(EchoObject.builder().filePath(filePath).content(content.toString()).build());
+        }
     }
 }
