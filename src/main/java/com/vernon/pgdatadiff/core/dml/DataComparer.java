@@ -1,13 +1,5 @@
 package com.vernon.pgdatadiff.core.dml;
 
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.ForkJoinTask;
-
-import org.springframework.util.ObjectUtils;
-
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -23,8 +15,15 @@ import com.vernon.pgdatadiff.model.DataDiffConfigItem;
 import com.vernon.pgdatadiff.model.EchoObject;
 import com.vernon.pgdatadiff.utils.FileUtil;
 import com.vernon.pgdatadiff.utils.SqlUtil;
-
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.ObjectUtils;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.ForkJoinTask;
 
 /**
  * @author Vernon Chen
@@ -32,6 +31,32 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class DataComparer {
+
+    private static final Map<String, String> TRIGGER_NAME_MAP = new HashMap<>();
+
+    static {
+        TRIGGER_NAME_MAP.put("before_insert_trigger", "business_scope_config");
+        TRIGGER_NAME_MAP.put("t_delete_propertysauthug", "mdm_propertysauth_usergroup2");
+        TRIGGER_NAME_MAP.put("t_delete_rusergroupcategory", "mdm_right_usergroup_category2");
+        TRIGGER_NAME_MAP.put("t_delete_rusergroupcategory_module", "mod_right_usergroup_category");
+        TRIGGER_NAME_MAP.put("t_deletersqlverify", "metadata_health_rule");
+        TRIGGER_NAME_MAP.put("t_deletesqlverifybg", "metadata_health_rule_bg");
+        TRIGGER_NAME_MAP.put("t_deletetsyscodecol", "mdm_syscode2");
+        TRIGGER_NAME_MAP.put("t_deleteuniqueverift", "metadata_health_rule_sqlverify");
+        TRIGGER_NAME_MAP.put("t_deleteuniqueveriftbg", "metadata_rule_sqlverifybg");
+        TRIGGER_NAME_MAP.put("t_insert_propertysauthug", "mdm_propertysauth_usergroup2");
+        TRIGGER_NAME_MAP.put("t_insert_rusergroupcategory", "mdm_right_usergroup_category2");
+        TRIGGER_NAME_MAP.put("t_insert_rusergroupcategory_module", "mod_right_usergroup_category");
+        TRIGGER_NAME_MAP.put("t_insertcleansyscode", "clean_syscode");
+        TRIGGER_NAME_MAP.put("t_insertsyscodecol", "module_syscode");
+        TRIGGER_NAME_MAP.put("t_updatecleansyscodecol", "clean_syscode");
+        TRIGGER_NAME_MAP.put("t_updatesyscodecol", "module_syscode");
+        TRIGGER_NAME_MAP.put("trg_delete_menu", "base_menubase");
+        TRIGGER_NAME_MAP.put("trg_insert_menu", "base_menubase");
+        TRIGGER_NAME_MAP.put("trg_module_syscode_delete", "module_syscode");
+        TRIGGER_NAME_MAP.put("update_base_menu", "base_menubase");
+    }
+
 
     public static void compareData() {
         int totolRowCount = 0;
@@ -45,6 +70,7 @@ public class DataComparer {
                     totalConfigCount));
             int totalTableCount = entry.getValue().getValue().getCompareOptions().getDataCompare().getIncludedTables().size();
             int processedTableCount = 0;
+            generateBeforeProcess(entry);
             for (CompareTable ct : entry.getValue().getValue().getCompareOptions().getDataCompare().getIncludedTables()) {
                 log.info(String.format("========== Start to compare %s's table %s with progress(%s/%s) ==========", entry.getKey(), ct.getTableName(),
                         processedTableCount + 1, totalTableCount));
@@ -74,13 +100,14 @@ public class DataComparer {
                 processedTableCount++;
             }
             processedConfigCount++;
+            generateAfterProcess(entry);
         }
 
         log.info("finish to generate sql with totle count " + totolRowCount);
     }
 
     private static void generateSql(String configKey, DataDiffConfigItem dataDiffConfigItem, CompareTable ct, Map<String, Map<String, Object>> onlySourceMap,
-            Map<String, Map<String, Object>> bothMap, Map<String, Map<String, Object>> onlyTargetSet) {
+                                    Map<String, Map<String, Object>> bothMap, Map<String, Map<String, Object>> onlyTargetSet) {
         log.debug(String.format("start to generate delete sql for talbe %s, count %s.", ct.getTableName(), onlyTargetSet.size()));
         if (!ObjectUtils.isEmpty(onlyTargetSet)) {
             generateDeleteSql(configKey, dataDiffConfigItem, ct, onlyTargetSet);
@@ -114,7 +141,7 @@ public class DataComparer {
 //    }
 
     private static void generateInsertSql(String configKey, DataDiffConfigItem dataDiffConfigItem, CompareTable ct,
-            Map<String, Map<String, Object>> onlySourceMap) {
+                                          Map<String, Map<String, Object>> onlySourceMap) {
         DBDiffContext.initForkCount();
         Integer poolSize = Optional.fromNullable(ct.getConcurrent()).or(dataDiffConfigItem.getValue().getCompareOptions().getConcurrent());
         ForkJoinPool pool = new ForkJoinPool(poolSize);
@@ -187,7 +214,7 @@ public class DataComparer {
     }
 
     private static void generateDeleteSql(String configKey, DataDiffConfigItem dataDiffConfigItem, CompareTable ct,
-            Map<String, Map<String, Object>> onlyTargetSet) {
+                                          Map<String, Map<String, Object>> onlyTargetSet) {
         String filePath = FileUtil.createFile(DBDiffContext.identifier + System.getProperty("file.separator") + configKey, "DataDiff.sql");
         for (Entry<String, Map<String, Object>> entry : onlyTargetSet.entrySet()) {
             DBDiffContext.echoQueue.offer(EchoObject.builder().filePath(filePath).content(String.format(SqlConstant.DELETE_SQL,
@@ -195,4 +222,35 @@ public class DataComparer {
         }
     }
 
+    private static void generateBeforeProcess(Entry<String, DataDiffConfigItem> entry) {
+        String schema = entry.getValue().getValue().getTarget().getSchema();
+        String configKey = entry.getKey();
+        String filePath = FileUtil.createFile(DBDiffContext.identifier + System.getProperty("file.separator") + configKey, "DataDiff.sql");
+
+        // 禁用触发器
+        StringBuilder content = new StringBuilder();
+        TRIGGER_NAME_MAP.forEach((key, value) -> {
+            content.append("ALTER TABLE " + "\"").append(schema).append("\"").append(".").append("\"").append(value).append("\"").append(" DISABLE TRIGGER ").append(key).append(";\n");
+        });
+        //删除esbx_service_tablecolumn 外键
+        content.append("ALTER TABLE " + "\"").append(schema).append("\"").append(".").append("\"").append("esbx_service_tablecolumn").append("\"").append(" DROP CONSTRAINT IF EXISTS fk_esbx_service_tablecolumn_tableid").append(";\n");
+
+        DBDiffContext.echoQueue.offer(EchoObject.builder().filePath(filePath).content(content.toString()).build());
+    }
+
+    private static void generateAfterProcess(Entry<String, DataDiffConfigItem> entry) {
+        String schema = entry.getValue().getValue().getTarget().getSchema();
+        String configKey = entry.getKey();
+        String filePath = FileUtil.createFile(DBDiffContext.identifier + System.getProperty("file.separator") + configKey, "DataDiff.sql");
+
+        // 启用触发器
+        StringBuilder content = new StringBuilder();
+        content.append("\n");
+        TRIGGER_NAME_MAP.forEach((key, value) -> {
+            content.append("ALTER TABLE " + "\"").append(schema).append("\"").append(".").append("\"").append(value).append("\"").append(" ENABLE TRIGGER ").append(key).append(";\n");
+        });
+        //新增esbx_service_tablecolumn 外键
+        content.append("ALTER TABLE " + "\"").append(schema).append("\"").append(".").append("\"").append("esbx_service_tablecolumn").append("\"").append(" ADD CONSTRAINT fk_esbx_service_tablecolumn_tableid FOREIGN KEY (tableid) REFERENCES " + "\"").append(schema).append("\"").append(".").append("esbx_service_table(id)").append(";\n");
+        DBDiffContext.echoQueue.offer(EchoObject.builder().filePath(filePath).content(content.toString()).build());
+    }
 }
