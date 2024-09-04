@@ -73,7 +73,15 @@ Create a config file in your project folder like the below example:
 								"tableName": "base_code",    // The name of the table without schema
 								"tableKeyFields": [          // The comma-separated list of fields name that can be used to identify rows uniquely
 									"id", "code"
-								]
+								],
+								"excluededUpdateFields": ["field1", "field2"],    // Update fields ignored by comparison
+								 "replaceFields": [                               // Field content coverage
+									  {
+										"columnKey": "columnKey",
+										"targetValue": "targetValue",
+										"replaceValue": "replaceValue"
+									  }
+								  ]
 							}
 						]
 					}

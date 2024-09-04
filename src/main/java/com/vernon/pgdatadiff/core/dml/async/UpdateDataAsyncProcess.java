@@ -1,13 +1,15 @@
 package com.vernon.pgdatadiff.core.dml.async;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.RecursiveTask;
-
-import org.springframework.util.ObjectUtils;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
@@ -23,6 +25,8 @@ import com.vernon.pgdatadiff.utils.FileUtil;
 import com.vernon.pgdatadiff.utils.SqlUtil;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.util.CollectionUtils;
 
 /**
  * @author Vernon Chen
@@ -41,7 +45,7 @@ public class UpdateDataAsyncProcess extends RecursiveTask<Integer> {
     private String filePath;
 
     public UpdateDataAsyncProcess(List<String> segPartition, String configKey, DataDiffConfigItem dataDiffConfigItem, CompareTable ct,
-            Map<String, Map<String, Object>> dataMap) {
+                                  Map<String, Map<String, Object>> dataMap) {
         super();
         this.segPartition = segPartition;
         this.configKey = configKey;
@@ -104,6 +108,15 @@ public class UpdateDataAsyncProcess extends RecursiveTask<Integer> {
 
                     Object sourceValue = sourceColumnEntry.getValue();
                     Object targetValue = targetRowColumns.get(columnKey);
+
+                    if (!CollectionUtils.isEmpty(ct.getReplaceFields())) {
+                        for (CompareTable.ReplaceField replaceField : ct.getReplaceFields()) {
+                            if (Objects.equals(replaceField.getColumnKey(), columnKey) && Objects.nonNull(sourceValue)) {
+                                sourceValue = sourceValue.toString().replace(replaceField.getTargetValue(), replaceField.getReplaceValue());
+                            }
+                        }
+                    }
+
                     if (sourceValue == null && targetValue == null) {
                         continue;
                     } else if (sourceValue == null && targetValue != null) {
@@ -144,6 +157,12 @@ public class UpdateDataAsyncProcess extends RecursiveTask<Integer> {
         // 获取任务执行的结果
         return task1.join() + task2.join();
 
+    }
+
+    private static String replaceJsonValue(String jsonString, String regex, String replacement) {
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(jsonString);
+        return matcher.replaceAll(replacement);
     }
 
 }

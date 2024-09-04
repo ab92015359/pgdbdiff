@@ -3,6 +3,7 @@ package com.vernon.pgdatadiff.core.dml.async;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.concurrent.RecursiveTask;
 
 import com.google.common.base.Optional;
@@ -19,6 +20,7 @@ import com.vernon.pgdatadiff.utils.FileUtil;
 import com.vernon.pgdatadiff.utils.SqlUtil;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.CollectionUtils;
 
 /**
  * @author Vernon Chen
@@ -38,7 +40,7 @@ public class InsertDataAsyncProcess extends RecursiveTask<Integer> {
     private String filePath;
 
     public InsertDataAsyncProcess(List<String> segPartition, String configKey, DataDiffConfigItem dataDiffConfigItem, CompareTable ct,
-            Map<String, Map<String, Object>> dataMap) {
+                                  Map<String, Map<String, Object>> dataMap) {
         super();
         this.segPartition = segPartition;
         this.configKey = configKey;
@@ -63,6 +65,19 @@ public class InsertDataAsyncProcess extends RecursiveTask<Integer> {
             Map<String, Map<String, Object>> sourceDatas = DataOperationDao.loadDatas(configKey, DsEnum.SOURCE,
                     dataDiffConfigItem.getValue().getSource().getSchema(), ct, segDataMap);
             for (Entry<String, Map<String, Object>> sourceRowEntry : sourceDatas.entrySet()) {
+
+                if (!CollectionUtils.isEmpty(ct.getReplaceFields())) {
+                    for (CompareTable.ReplaceField replaceField : ct.getReplaceFields()) {
+                        for (Entry<String, Object> sourceColumnEntry : sourceRowEntry.getValue().entrySet()) {
+                            Object value = sourceColumnEntry.getValue();
+                            if (Objects.equals(replaceField.getColumnKey(), sourceColumnEntry.getKey()) && Objects.nonNull(value)) {
+                                value = value.toString().replace(replaceField.getTargetValue(), replaceField.getReplaceValue());
+                            }
+                            sourceColumnEntry.setValue(value);
+                        }
+                    }
+                }
+
                 String[] insertSql = SqlUtil.buildInsert(ct, sourceRowEntry.getValue());
                 DBDiffContext.echoQueue.offer(EchoObject.builder().filePath(this.filePath).content(String.format(SqlConstant.INSERT_SQL,
                         dataDiffConfigItem.getValue().getTarget().getSchema(), ct.getTableName(), insertSql[0], insertSql[1])).build());
