@@ -18,4 +18,4 @@ ALTER TABLE "%s"."module_syscode" ENABLE TRIGGER t_insertsyscodecol;&
 ALTER TABLE "%s"."business_scope_config" ENABLE TRIGGER before_insert_trigger;&
 ALTER TABLE "%s"."metadata_health_rule_bg" ENABLE TRIGGER t_deletesqlverifybg;&
 ALTER TABLE "%s"."metadata_health_rule_sqlverify" ENABLE TRIGGER t_deleteuniqueverift;&
-ALTER TABLE "%s"."esbx_service_tablecolumn" ADD CONSTRAINT fk_esbx_service_tablecolumn_tableid FOREIGN KEY (tableid) REFERENCES esbx_service_table(id);&
+ALTER TABLE "%s"."esbx_service_tablecolumn" ADD CONSTRAINT fk_esbx_service_tablecolumn_tableid FOREIGN KEY (tableid) REFERENCES "%s".esbx_service_table(id);&
