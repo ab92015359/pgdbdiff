@@ -220,7 +220,7 @@ public class DataComparer {
             String[] split = afterProcessSql.split("&");
             StringBuilder content = new StringBuilder();
             for (String sql : split) {
-                content.append(String.format(sql, schema));
+                content.append(sql.replace("%s", schema));
             }
             DBDiffContext.echoQueue.offer(EchoObject.builder().filePath(filePath).content(content.toString()).build());
         }
