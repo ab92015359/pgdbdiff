@@ -37,12 +37,22 @@ public class SchemaComparer {
             String dir = DBDiffContext.identifier + System.getProperty("file.separator") + entry.getKey() + System.getProperty("file.separator") + "dump";
             String sourceDDLFileName = "sourceDDL.sql";
             String sourceDDLTempFileName = "sourceDDLTemp.sql";
+
             sourceDDLFilePath = FileUtil.createFile(dir, sourceDDLFileName);
             sourceDDLTempFilePath = FileUtil.createFile(dir, sourceDDLTempFileName);
-            PGUtil.dump(sourceDDLTempFilePath, entry.getValue().getValue().getSource(),
-                    entry.getValue().getValue().getCompareOptions().getSchemaCompare().getExcluedTables());
-            FileUtil.replaceFile(sourceDDLTempFilePath, sourceDDLFilePath, entry.getValue().getValue().getSource().getSchema(),
-                    entry.getValue().getValue().getTarget().getSchema());
+
+            String srouceSchema = entry.getValue().getValue().getSource().getSchema();
+            String targetSchema = entry.getValue().getValue().getTarget().getSchema();
+
+            if (srouceSchema.equals(targetSchema)) {
+                PGUtil.dump(sourceDDLFilePath, entry.getValue().getValue().getSource(),
+                        entry.getValue().getValue().getCompareOptions().getSchemaCompare().getExcluedTables());
+            } else {
+                PGUtil.dump(sourceDDLTempFilePath, entry.getValue().getValue().getSource(),
+                        entry.getValue().getValue().getCompareOptions().getSchemaCompare().getExcluedTables());
+                FileUtil.replaceFile(sourceDDLTempFilePath, sourceDDLFilePath, entry.getValue().getValue().getSource().getSchema(),
+                        entry.getValue().getValue().getTarget().getSchema());
+            }
 
             String targetDDLFileName = "targetDDL.sql";
             targetDDLFilePath = FileUtil.createFile(dir, targetDDLFileName);
