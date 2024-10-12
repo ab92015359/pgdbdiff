@@ -1,0 +1,2047 @@
+{
+  "misc": {
+    "pgDumpPath": "D:\\software\\pgAdmin\\pgAdmin 4\\runtime\\pg_dump.exe",
+    "enableSchemaDiff": false,
+    "enableDataDiff": true
+  },
+  "compares": [
+    {
+      "key": "gkskfbr_xxx",
+      "value": {
+        "source": {
+          "host": "",
+          "port": "",
+          "dbName": "",
+          "schema": "",
+          "username": "",
+          "password": ""
+        },
+        "target": {
+          "host": "",
+          "port": "",
+          "dbName": "",
+          "schema": "",
+          "username": "",
+          "password": ""
+        },
+        "compareOptions": {
+          "batchSize": 8000,
+          "concurrent": 200,
+          "schemaCompare": {
+            "excluedTables": [
+              "conf_ar_sygl_appid"
+            ]
+          },
+          "dataCompare": {
+            "includedTables": [
+              {
+                "tableName": "attribute_group_attribute_group",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_id"
+                ]
+              },
+              {
+                "tableName": "attribute_group_attribute_group_a",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_id"
+                ]
+              },
+              {
+                "tableName": "attribute_group_attribute_group_c",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_logid"
+                ]
+              },
+              {
+                "tableName": "attribute_group_attribute_group_e",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_id"
+                ]
+              },
+              {
+                "tableName": "attribute_group_attribute_group_l",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_logid"
+                ]
+              },
+              {
+                "tableName": "base_codeclass",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "codeclassid"
+                ]
+              },
+              {
+                "tableName": "base_menu",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "menuid"
+                ]
+              },
+              {
+                "tableName": "base_menubase",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "menubaseid"
+                ]
+              },
+              {
+                "tableName": "base_model_detail",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "base_modelparameter",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "base_modelparameter_detail",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "base_module_rights",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "base_module_rights_init",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "base_search_conf",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "searcheid"
+                ]
+              },
+              {
+                "tableName": "base_word",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "hz"
+                ]
+              },
+              {
+                "tableName": "base_zipcode_countryrule",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "countryruleid"
+                ]
+              },
+              {
+                "tableName": "conf_ar_warehouse_info",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "dm_analyse_dataflow",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "targetid",
+                  "sourceid"
+                ]
+              },
+              {
+                "tableName": "dm_fold",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "foldid"
+                ]
+              },
+              {
+                "tableName": "dm_fold_access_control",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "dm_fold_businesscat",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "dm_instance",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "instanceid"
+                ]
+              },
+              {
+                "tableName": "dm_meta_dependency",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "engine_model_code",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "ruleid",
+                  "codetype",
+                  "segmentid"
+                ]
+              },
+              {
+                "tableName": "engine_refdata_childinfo",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "segmentid",
+                  "syscode",
+                  "codetype",
+                  "refdata"
+                ]
+              },
+              {
+                "tableName": "engine_ruleinfo",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "ruleid"
+                ]
+              },
+              {
+                "tableName": "engine_ruleitem",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "itemid"
+                ]
+              },
+              {
+                "tableName": "engine_rulelvcode",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "codetype",
+                  "syscode",
+                  "parentcode",
+                  "segmentid"
+                ]
+              },
+              {
+                "tableName": "engine_rulerefdata",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "refindex",
+                  "codetype",
+                  "syscode",
+                  "segmentid"
+                ]
+              },
+              {
+                "tableName": "engine_rulesegment",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "segmentid"
+                ],
+                "excluededUpdateFields": [
+                  "currval"
+                ]
+              },
+              {
+                "tableName": "esb_interface",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id_"
+                ]
+              },
+              {
+                "tableName": "esb_mq",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "esb_mule_bereceive",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "receiveid"
+                ]
+              },
+              {
+                "tableName": "esb_mule_categorylist",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "categorylistid"
+                ]
+              },
+              {
+                "tableName": "esb_mule_config_receive",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "synconfigid"
+                ]
+              },
+              {
+                "tableName": "esb_mule_config_send",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "synconfigid"
+                ]
+              },
+              {
+                "tableName": "esb_mule_receive",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "receiveid"
+                ]
+              },
+              {
+                "tableName": "esb_mule_send",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "strategyid"
+                ]
+              },
+              {
+                "tableName": "esb_mule_send_relatedview",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "relatedviewid"
+                ]
+              },
+              {
+                "tableName": "esb_mule_sendcondition",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "conditionid"
+                ]
+              },
+              {
+                "tableName": "esbx_service",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ],
+                // 按需替换
+                "replaceFields": [
+                  {
+                    "columnKey": "extraconfig",
+                    "targetValue": "10.107.0.54:8081",
+                    "replaceValue": "10.107.0.53:8081"
+                  },
+                  {
+                    "columnKey": "extraconfig",
+                    "targetValue": "sy-base.guoyaoshuke.com",
+                    "replaceValue": "10.31.248.100"
+                  },
+                  {
+                    "columnKey": "extraconfig",
+                    "targetValue": "oyhsMFkqLcvTfIDo",
+                    "replaceValue": "pwHgWJowYcrzeZWd"
+                  }
+                ]
+              },
+              {
+                "tableName": "esbx_service_tablecolumn",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "esbx_service_table",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "hierarchical_mdm_config",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "licence_config",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "licence_extension_config",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdm_ar_dict",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_id"
+                ]
+              },
+              {
+                "tableName": "mdm_ar_dict_a",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_id"
+                ]
+              },
+              {
+                "tableName": "mdm_ar_dict_c",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_logid"
+                ]
+              },
+              {
+                "tableName": "mdm_ar_dict_e",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_id"
+                ]
+              },
+              {
+                "tableName": "mdm_ar_dict_l",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_logid"
+                ]
+              },
+              {
+                "tableName": "mdm_co_dict",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_id"
+                ]
+              },
+              {
+                "tableName": "mdm_co_dict_a",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_id"
+                ]
+              },
+              {
+                "tableName": "mdm_co_dict_c",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_logid"
+                ]
+              },
+              {
+                "tableName": "mdm_co_dict_e",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_id"
+                ]
+              },
+              {
+                "tableName": "mdm_co_dict_l",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_logid"
+                ]
+              },
+              {
+                "tableName": "mdm_designconfig",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdm_g_dict",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_id"
+                ]
+              },
+              {
+                "tableName": "mdm_g_dict_a",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_id"
+                ]
+              },
+              {
+                "tableName": "mdm_g_dict_c",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_logid"
+                ]
+              },
+              {
+                "tableName": "mdm_g_dict_e",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_id"
+                ]
+              },
+              {
+                "tableName": "mdm_g_dict_l",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_logid"
+                ]
+              },
+              {
+                "tableName": "mdm_hidepropertyvalue",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "hidepropertyid"
+                ]
+              },
+              {
+                "tableName": "mdm_hideprovalue_detail",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "hideprovdetailid"
+                ]
+              },
+              {
+                "tableName": "mdm_lic_comp",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_id"
+                ]
+              },
+              {
+                "tableName": "mdm_lic_comp_a",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_id"
+                ]
+              },
+              {
+                "tableName": "mdm_lic_comp_c",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_logid"
+                ]
+              },
+              {
+                "tableName": "mdm_lic_comp_e",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_id"
+                ]
+              },
+              {
+                "tableName": "mdm_lic_comp_l",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_logid"
+                ]
+              },
+              {
+                "tableName": "mdm_property_relation",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdm_right_role_category",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "rolecode",
+                  "mdmcode",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "mdm_syscode_foreigngroup",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "specialitycode",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "mdm_syscodecategory",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscodecategoryid"
+                ]
+              },
+              {
+                "tableName": "mdm_syscoderule",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscoderuleid"
+                ]
+              },
+              {
+                "tableName": "mdm_syscoderule_code_history",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdm_syscoderulecol",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscoderulecolid"
+                ]
+              },
+              {
+                "tableName": "mdm_syscoderulecolbg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscoderulecolbgid"
+                ]
+              },
+              {
+                "tableName": "mdm_syscoderulecollog",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscoderulecollogid"
+                ]
+              },
+              {
+                "tableName": "mdm_syscoderulesegment",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscoderulesegmentid"
+                ]
+              },
+              {
+                "tableName": "mdm_syscoderulesegmentvalue",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscoderulesegmentvalueid"
+                ]
+              },
+              {
+                "tableName": "mdm_syscodesyn",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscodesynid"
+                ]
+              },
+              {
+                "tableName": "mdm_system_relation",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "relationid"
+                ]
+              },
+              {
+                "tableName": "mdm_usergroupsyscode",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "usergroupsyscodeid"
+                ]
+              },
+              {
+                "tableName": "mdm_xmltemplate",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdmx_attribute_group",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdmx_attribute_group_a",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdmx_attribute_group_auditcomment",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "auditcommentid"
+                ]
+              },
+              {
+                "tableName": "mdmx_attribute_group_c",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "logid"
+                ]
+              },
+              {
+                "tableName": "mdmx_attribute_group_e",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdmx_attribute_group_l",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "logid"
+                ]
+              },
+              {
+                "tableName": "mdmx_attribute_group_u",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "bgid"
+                ]
+              },
+              {
+                "tableName": "mdmx_lic_comp",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdmx_lic_comp_a",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdmx_lic_comp_auditcomment",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "auditcommentid"
+                ]
+              },
+              {
+                "tableName": "mdmx_lic_comp_c",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "logid"
+                ]
+              },
+              {
+                "tableName": "mdmx_lic_comp_e",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdmx_lic_comp_l",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "logid"
+                ]
+              },
+              {
+                "tableName": "mdmx_lic_comp_u",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "bgid"
+                ]
+              },
+              {
+                "tableName": "mdmx_mdm_ar_dict_md",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdmx_mdm_ar_dict_md_a",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdmx_mdm_ar_dict_md_auditcomment",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "auditcommentid"
+                ]
+              },
+              {
+                "tableName": "mdmx_mdm_ar_dict_md_c",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "logid"
+                ]
+              },
+              {
+                "tableName": "mdmx_mdm_ar_dict_md_e",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdmx_mdm_ar_dict_md_l",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "logid"
+                ]
+              },
+              {
+                "tableName": "mdmx_mdm_ar_dict_md_u",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "bgid"
+                ]
+              },
+              {
+                "tableName": "mdmx_mdm_co_dict_md",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdmx_mdm_co_dict_md_a",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdmx_mdm_co_dict_md_auditcomment",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "auditcommentid"
+                ]
+              },
+              {
+                "tableName": "mdmx_mdm_co_dict_md_c",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "logid"
+                ]
+              },
+              {
+                "tableName": "mdmx_mdm_co_dict_md_e",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdmx_mdm_co_dict_md_l",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "logid"
+                ]
+              },
+              {
+                "tableName": "mdmx_mdm_co_dict_md_u",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "bgid"
+                ]
+              },
+              {
+                "tableName": "mdmx_mdm_dict",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdmx_mdm_dict_a",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdmx_mdm_dict_auditcomment",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "auditcommentid"
+                ]
+              },
+              {
+                "tableName": "mdmx_mdm_dict_c",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "logid"
+                ]
+              },
+              {
+                "tableName": "mdmx_mdm_dict_e",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdmx_mdm_dict_l",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "logid"
+                ]
+              },
+              {
+                "tableName": "mdmx_mdm_dict_u",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "bgid"
+                ]
+              },
+              {
+                "tableName": "mdmx_tax_class",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdmx_tax_class_a",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdmx_tax_class_auditcomment",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "auditcommentid"
+                ]
+              },
+              {
+                "tableName": "mdmx_tax_class_c",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "logid"
+                ]
+              },
+              {
+                "tableName": "mdmx_tax_class_e",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "mdmx_tax_class_l",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "logid"
+                ]
+              },
+              {
+                "tableName": "mdmx_tax_class_u",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "bgid"
+                ]
+              },
+              {
+                "tableName": "metadata_health_item",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "item"
+                ]
+              },
+              {
+                "tableName": "metadata_health_rule",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "healthruleid"
+                ]
+              },
+              {
+                "tableName": "metadata_health_rule_bg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "healthrulebgid"
+                ]
+              },
+              {
+                "tableName": "metadata_health_rule_log",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "healthrulelogid"
+                ]
+              },
+              {
+                "tableName": "metadata_health_rule_sqlverify",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "sqlverifyid"
+                ]
+              },
+              {
+                "tableName": "metadata_health_ruledetail",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "healthruledetailid"
+                ]
+              },
+              {
+                "tableName": "metadata_health_ruledetail_bg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "healthruledetailbgid"
+                ]
+              },
+              {
+                "tableName": "metadata_health_ruledetail_log",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "healthruledetaillogid"
+                ]
+              },
+              {
+                "tableName": "metadata_rule_sqlverifybg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "sqlverifybgid"
+                ]
+              },
+              {
+                "tableName": "metadata_rule_sqlverifylog",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "sqlverifylogid"
+                ]
+              },
+              {
+                "tableName": "metadata_rule_uniqueverify",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "uniqueverifyid"
+                ]
+              },
+              {
+                "tableName": "metadata_rule_uniqueverify_bg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "uniqueverifybgid"
+                ]
+              },
+              {
+                "tableName": "metadata_rule_uniqueverify_log",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "uniqueverifylogid"
+                ]
+              },
+              {
+                "tableName": "metadata_tableitem",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "metadatatableitemid"
+                ]
+              },
+              {
+                "tableName": "mod_right_usergroup_category",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "usetype",
+                  "usergroupcode",
+                  "mdmcode"
+                ]
+              },
+              {
+                "tableName": "module_auditcomment",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "auditcommentid",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "module_comverify",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "combinationverifyid",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "module_comverify_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "combinationverifyid",
+                  "syscode",
+                  "i18n"
+                ]
+              },
+              {
+                "tableName": "module_comverifybg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "combinationverifybgid",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "module_comverifybg_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "combinationverifybgid",
+                  "syscode",
+                  "i18n"
+                ]
+              },
+              {
+                "tableName": "module_comverifydetail",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "comverifydetailid"
+                ]
+              },
+              {
+                "tableName": "module_comverifydetail_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "comverifydetailid",
+                  "syscode",
+                  "i18n"
+                ]
+              },
+              {
+                "tableName": "module_comverifydetailbg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "comverifydetailbgid",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "module_comverifydetailbg_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "i18n",
+                  "comverifydetailbgid"
+                ]
+              },
+              {
+                "tableName": "module_comverifydetaillog",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "comverifydetaillogid",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "module_comverifydetaillog_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "i18n",
+                  "comverifydetaillogid"
+                ]
+              },
+              {
+                "tableName": "module_comverifylog",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "combinationverifylogid",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "module_comverifylog_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "i18n",
+                  "combinationverifylogid"
+                ]
+              },
+              {
+                "tableName": "module_constraint",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "module_constraintbg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "bgid"
+                ]
+              },
+              {
+                "tableName": "module_constraintlog",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "logid"
+                ]
+              },
+              {
+                "tableName": "module_data_count",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "module_designconfig",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "module_designconfig_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "module_exportmodel",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "exportmodelid",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "module_foldrelation",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "module_grouplabel_property",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "module_grouplabel_propertybg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "module_grouplabel_propertylog",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "module_grouplabel_right",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "module_grouplabel_rightbg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "module_grouplabel_rightlog",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "module_index",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "module_indexbg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "bgid"
+                ]
+              },
+              {
+                "tableName": "module_indexlog",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "logid"
+                ]
+              },
+              {
+                "tableName": "module_online_config",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "configid"
+                ]
+              },
+              {
+                "tableName": "module_online_paramter",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "paramterid"
+                ]
+              },
+              {
+                "tableName": "module_online_prop_bind",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "bindid"
+                ]
+              },
+              {
+                "tableName": "module_onlineverifyr",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscodeonlineid"
+                ]
+              },
+              {
+                "tableName": "module_processright",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "processrightid"
+                ]
+              },
+              {
+                "tableName": "module_propcontrol",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "propertyvalueid"
+                ]
+              },
+              {
+                "tableName": "module_propcontrol_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "propertyvalueid",
+                  "i18n"
+                ]
+              },
+              {
+                "tableName": "module_propcontrolbg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "propertyvaluebgid"
+                ]
+              },
+              {
+                "tableName": "module_propcontrolbg_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "propertyvaluebgid",
+                  "i18n"
+                ]
+              },
+              {
+                "tableName": "module_propcontrollog",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "propertyvaluelogid"
+                ]
+              },
+              {
+                "tableName": "module_propcontrollog_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "propertyvaluelogid",
+                  "i18n"
+                ]
+              },
+              {
+                "tableName": "module_property",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "propertysid"
+                ]
+              },
+              {
+                "tableName": "module_property_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "i18n",
+                  "propertysid"
+                ]
+              },
+              {
+                "tableName": "module_property_relation",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "module_propertybg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "propertysbgid"
+                ]
+              },
+              {
+                "tableName": "module_propertybg_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "i18n",
+                  "propertysbgid"
+                ]
+              },
+              {
+                "tableName": "module_propertycol",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "propertycolid"
+                ]
+              },
+              {
+                "tableName": "module_propertygroup",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "propertygroupid"
+                ]
+              },
+              {
+                "tableName": "module_propertygroup_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "i18n",
+                  "propertygroupid",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "module_propertygroupbg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "propertygroupbgid"
+                ]
+              },
+              {
+                "tableName": "module_propertygroupbg_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "i18n",
+                  "syscode",
+                  "propertygroupbgid"
+                ]
+              },
+              {
+                "tableName": "module_propertygrouplog",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "propertygrouplogid"
+                ]
+              },
+              {
+                "tableName": "module_propertygrouplog_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "i18n",
+                  "propertygrouplogid"
+                ]
+              },
+              {
+                "tableName": "module_propertylog",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "propertyslogid",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "module_propertylog_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "propertyslogid",
+                  "i18n"
+                ]
+              },
+              {
+                "tableName": "module_propertysauth_user",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "authorityuserid"
+                ]
+              },
+              {
+                "tableName": "module_propertysauth_usergroup",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "authorityusergroupid"
+                ]
+              },
+              {
+                "tableName": "module_propertysauthority",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "authorityid"
+                ]
+              },
+              {
+                "tableName": "module_propertyvalueconfig",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "propertyvalueid"
+                ]
+              },
+              {
+                "tableName": "module_propertyvalueconfig_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "i18n",
+                  "propertyvalueid"
+                ]
+              },
+              {
+                "tableName": "module_propertyvalueconfigbg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "propertyvaluebgid"
+                ]
+              },
+              {
+                "tableName": "module_propertyvalueconfigbg_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "propertyvaluebgid",
+                  "i18n"
+                ]
+              },
+              {
+                "tableName": "module_propertyvalueconfiglog",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "propertyvaluelogid"
+                ]
+              },
+              {
+                "tableName": "module_propertyvalues",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "propertyvaluesid"
+                ]
+              },
+              {
+                "tableName": "module_propertyvalues_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "propertyvaluesid",
+                  "syscode",
+                  "i18n"
+                ]
+              },
+              {
+                "tableName": "module_propertyvaluesbg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "propertyvaluesbgid",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "module_propertyvaluesbg_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "i18n",
+                  "propertyvaluesbgid",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "module_propertyvalueslog",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "propertyvalueslogid"
+                ]
+              },
+              {
+                "tableName": "module_propertyvalueslog_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "i18n",
+                  "propertyvalueslogid"
+                ]
+              },
+              {
+                "tableName": "module_propshowcontrol",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "module_relationships",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "batchno"
+                ]
+              },
+              {
+                "tableName": "module_right_category",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "mdmcode",
+                  "usercode",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "module_rightpropertyg_property",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "rightpropertygpropertyid"
+                ]
+              },
+              {
+                "tableName": "module_rightpropertygroup",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "rightpropertygroupid"
+                ]
+              },
+              {
+                "tableName": "module_rightpropertys",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "rightpropertysid"
+                ]
+              },
+              {
+                "tableName": "module_selfdimension",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "module_selfdimension_main",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "configid"
+                ]
+              },
+              {
+                "tableName": "module_speciality",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "specialitytid",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "module_speciality_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "specialitytid",
+                  "i18n"
+                ]
+              },
+              {
+                "tableName": "module_specialitybg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "specialitytbgid"
+                ]
+              },
+              {
+                "tableName": "module_specialitybg_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "specialitytbgid",
+                  "i18n"
+                ]
+              },
+              {
+                "tableName": "module_specialitylog",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "specialitytlogid",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "module_specialitylog_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "specialitytlogid",
+                  "i18n",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "module_standardinfo",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "specialitytstandardid",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "module_standardinfo_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "i18n",
+                  "syscode",
+                  "specialitytstandardid"
+                ]
+              },
+              {
+                "tableName": "module_standardinfobg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "specialitytstandardbgid"
+                ]
+              },
+              {
+                "tableName": "module_standardinfobg_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "specialitytstandardbgid",
+                  "syscode",
+                  "i18n"
+                ]
+              },
+              {
+                "tableName": "module_standardinfolog",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "specialitytstandardlogid",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "module_standardinfolog_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "specialitytstandardlogid",
+                  "i18n"
+                ]
+              },
+              {
+                "tableName": "module_statitrigger",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "module_statitrigger_bg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "module_syscode",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscodeid"
+                ],
+                "excluededUpdateFields": [
+                  "storagelocationmd5"
+                ]
+              },
+              {
+                "tableName": "module_syscode_foreigngroup",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "specialitycode",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "module_syscode_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscodeid",
+                  "i18n"
+                ]
+              },
+              {
+                "tableName": "module_syscode_rule",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "module_syscode_rule_temp",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "ruleid"
+                ]
+              },
+              {
+                "tableName": "module_syscodebg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscodeauthbgid"
+                ]
+              },
+              {
+                "tableName": "module_syscodecol",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscodecolid"
+                ]
+              },
+              {
+                "tableName": "module_syscodecol_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscodecolid"
+                ]
+              },
+              {
+                "tableName": "module_syscodecolbg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscodecolbgid"
+                ]
+              },
+              {
+                "tableName": "module_syscodecolbg_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscodecolbgid"
+                ]
+              },
+              {
+                "tableName": "module_syscodecoltype",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscodecoltypeid"
+                ]
+              },
+              {
+                "tableName": "module_syscodelog",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscodelogid"
+                ]
+              },
+              {
+                "tableName": "module_typeconfig",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "module_uniqueverifyr",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscodeuniqueid",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "module_uniqueverifyr_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "i18n",
+                  "syscodeuniqueid"
+                ]
+              },
+              {
+                "tableName": "module_uniqueverifyrbg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscodeuniquebgid",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "module_uniqueverifyrbg_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscodeuniquebgid",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "module_uniqueverifyrlog",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "syscodeuniquelogid"
+                ]
+              },
+              {
+                "tableName": "module_uniqueverifyrlog_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "syscodeuniquelogid"
+                ]
+              },
+              {
+                "tableName": "module_uniqueverifysub",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "uniqueverifysubid"
+                ]
+              },
+              {
+                "tableName": "module_uniqueverifysub_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "i18n",
+                  "syscode",
+                  "uniqueverifysubid"
+                ]
+              },
+              {
+                "tableName": "module_uniqueverifysubbg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "syscode",
+                  "uniqueverifysubbgid"
+                ]
+              },
+              {
+                "tableName": "module_uniqueverifysubbg_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "uniqueverifysubbgid",
+                  "syscode",
+                  "i18n"
+                ]
+              },
+              {
+                "tableName": "module_uniqueverifysublog",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "uniqueverifysublogid",
+                  "syscode"
+                ]
+              },
+              {
+                "tableName": "module_uniqueverifysublog_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "i18n",
+                  "syscode",
+                  "uniqueverifysublogid"
+                ]
+              },
+              {
+                "tableName": "module_valuetypemap",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "module_xmltemplate",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "module_xmltemplate_i",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "search_index_config_gykg",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "id"
+                ]
+              },
+              {
+                "tableName": "sync_timer_control",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "code"
+                ]
+              },
+              {
+                "tableName": "tax_classification_code",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_id"
+                ]
+              },
+              {
+                "tableName": "tax_classification_code_a",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_id"
+                ]
+              },
+              {
+                "tableName": "tax_classification_code_c",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_logid"
+                ]
+              },
+              {
+                "tableName": "tax_classification_code_e",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_id"
+                ]
+              },
+              {
+                "tableName": "tax_classification_code_l",
+                "tableSchema": "gksk_fbr_sn",
+                "tableKeyFields": [
+                  "gykg_logid"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
