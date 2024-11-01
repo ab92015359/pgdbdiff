@@ -1,20 +1,19 @@
 package com.vernon.pgdatadiff.core;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.List;
-import java.util.Map;
-
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.vernon.pgdatadiff.constants.SettingConstant;
 import com.vernon.pgdatadiff.model.DataDiffConfigItem;
 import com.vernon.pgdatadiff.model.DataDiffMiscSetting;
 import com.vernon.pgdatadiff.model.EchoObject;
-
 import lombok.Data;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Deque;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.LinkedBlockingDeque;
 
 /**
  * @author Vernon Chen
@@ -24,10 +23,10 @@ import lombok.Data;
 public class DBDiffContext {
     public static DataDiffMiscSetting miscSetting;
     public static Map<String, DataDiffConfigItem> configMap = Maps.newHashMap();
-    
+
     public static String currentWorkDir;
     public static String identifier;
-    public static Deque<EchoObject> echoQueue = new ArrayDeque<>();
+    public static Deque<EchoObject> echoQueue = new LinkedBlockingDeque<>();
     public static Boolean isFinished = false;
 
     public static Integer forkTaskCount = 1;
