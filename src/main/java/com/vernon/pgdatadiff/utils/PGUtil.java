@@ -26,6 +26,7 @@ public class PGUtil {
             String outputFilePath = FileUtil.createFile(outputDir, outputFile);
             String command = String.format("java -jar apgdiff-2.7.0.jar --ignore-start-with --new=%s --old=%s > %s", srouceFile, targetFile, outputFilePath);
 
+            log.info("compare command: " + command);
             // 执行命令
             Process process = Runtime.getRuntime().exec(command);
 
